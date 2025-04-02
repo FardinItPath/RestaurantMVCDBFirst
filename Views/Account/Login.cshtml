@@ -1,0 +1,53 @@
+﻿@model RestaurantMVCCodeFirst.View_Model.UserViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="col-6">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4 text-primary">User Login</h2>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success text-center">@TempData["Success"]</div>
+            }
+
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger text-center">@ViewBag.ErrorMessage</div>
+            }
+
+            <form asp-action="Login" method="post">
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label fw-bold"></label>
+                    <input asp-for="Username" class="form-control" placeholder="Enter your username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-bold"></label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+
+                <div class="text-end mb-3">
+                    <p class="text-center mt-3 text-muted">Forgot your password? <a asp-action="ForgotPassword" asp-controller="Account" class="text-decoration-none fw-bold">Reset it here</a></p>
+                </div>
+
+                <div class="text-center mt-3">
+                    <p class="text-muted">Don't have an account? <a asp-action="Register" class="text-decoration-none fw-bold">Register here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

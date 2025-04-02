@@ -1,0 +1,48 @@
+﻿@model RestaurantMVCCodeFirst.View_Model.UserViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-6">
+        <div class="card shadow-lg p-4 w-100">
+            <h2 class="text-center mb-4 text-primary">User Registration</h2>
+
+            <form asp-action="Register" asp-controller="Account" method="post">
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label fw-bold">Username</label>
+                    <input asp-for="Username" class="form-control" placeholder="Enter username" required />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-bold">Password</label>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" required />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="RoleId" class="form-label fw-bold">Select Role</label>
+                    <select asp-for="RoleId" class="form-select" asp-items="ViewBag.Roles">
+                        <option value="">-- Select Role --</option>
+                    </select>
+                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+
+                <div class="text-center mt-3">
+                    <p class="text-muted">Already have an account? <a href="login" class="text-decoration-none fw-bold">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<RestaurantMVCDBFirst.Models.Menu>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Menu List";
+    var id = ViewBag.id;
+}
+
+<!-- Header and Create Button -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold text-dark">Menu List</h2>
+    @if (id == 1)
+    {
+        <a asp-controller="Menu" asp-action="Create" class="btn btn-primary shadow-sm btn-lg animate-btn">
+            <i class="bi bi-plus-circle"></i> Create Menu Item
+        </a>
+    }
+</div>
+
+<!-- Table Container -->
+<div class="table-responsive animate-table">
+    <table class="table table-bordered table-hover shadow-lg fade show">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Category</th>
+                @if (id == 1)
+                {
+                    <th>Actions</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var menu in Model)
+            {
+                <tr>
+                    <td>@menu.Name</td>
+                    <td>@menu.Description</td>
+                    <td>@menu.Price.ToString("C")</td>
+                    <td>@menu.Category.CategoryName</td>
+                    @if (id == 1)
+                    {
+                        <td class="d-flex align-items-center gap-2">
+                            <a asp-controller="Menu" asp-action="Edit" asp-route-id="@menu.MenuId"
+                               class="btn btn-warning btn-sm animate-btn px-3 py-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+
+                            <form asp-controller="Menu" asp-action="Delete" asp-route-id="@menu.MenuId" method="post">
+                                <button type="submit" class="btn btn-danger btn-sm animate-btn px-3 py-2">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
