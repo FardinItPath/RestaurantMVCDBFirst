@@ -27,8 +27,8 @@ namespace RestaurantMVCCodeFirst.Controllers
         [HttpGet("register")]
         public async Task<IActionResult> Register()
         {
-            var roles = await _userService.GetRoles(); // Fetch roles from database
-            ViewBag.Roles = new SelectList(roles, "RoleId", "RoleName"); // Send roles to View
+            var roles = await _userService.GetRoles(); 
+            ViewBag.Roles = new SelectList(roles, "RoleId", "RoleName"); 
             return View();
         }
 

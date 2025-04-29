@@ -15,14 +15,13 @@ namespace RestaurantMVCCodeFirst.Services
         {
             _userRepository = userRepository;
         }
-        public object Role => throw new NotImplementedException();
 
         public async Task<User> AuthenticateUser(string username, string password)
         {
             var user = await _userRepository.GetUserByUsername(username);
             if (user == null)
             {
-                return null; // User does not exist
+                return null; 
             }
             if (user.Password == password)
             {
@@ -70,11 +69,11 @@ namespace RestaurantMVCCodeFirst.Services
         }
         public async Task ResetPassword(ResetPasswordViewModel model)
         {
-            var user = await _userRepository.GetUserByUsername(model.UserName); // Await the async method
+            var user = await _userRepository.GetUserByUsername(model.UserName); 
             if (user != null)
             {
-                user.Password = model.NewPassword; // Consider hashing before saving
-                await _userRepository.Update(user); // Make sure this is async
+                user.Password = model.NewPassword; 
+                await _userRepository.Update(user); 
             }
         }
     }

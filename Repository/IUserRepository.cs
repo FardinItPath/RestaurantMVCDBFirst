@@ -5,8 +5,6 @@ namespace RestaurantMVCCodeFirst.Repository
 {
     public interface IUserRepository
     {
-       
-
         Task<bool> RegisterUser(User user); 
         Task<User> AuthenticateUser(string username, string password); 
         Task<bool> IsUsernameExists(string username); 

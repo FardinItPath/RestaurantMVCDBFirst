@@ -55,7 +55,7 @@ namespace RestaurantMVCCodeFirst.Controllers
 
 
         [HttpPost]
-[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MenuViewModel model)
         {
             if (!ModelState.IsValid)
